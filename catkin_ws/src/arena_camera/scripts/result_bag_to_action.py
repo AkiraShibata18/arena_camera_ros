@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import rospy
-import camera_control_msgs.msg
+import arena_camera_control_msgs.msg
 import actionlib
 import sensor_msgs.msg
 
@@ -15,7 +15,7 @@ class ImageReplicator(object):
 
         self._as = actionlib.SimpleActionServer(
             self._action_name,
-            camera_control_msgs.msg.GrabImagesAction,
+            arena_camera_control_msgs.msg.GrabImagesAction,
             self.execute_cb,
             False)
 
@@ -23,7 +23,7 @@ class ImageReplicator(object):
 
         self._sub = rospy.Subscriber(
             "/bag"+str(action_name)+"/result",
-            camera_control_msgs.msg.GrabImagesActionResult,
+            arena_camera_control_msgs.msg.GrabImagesActionResult,
             self.image_callback,
             queue_size=5)
 

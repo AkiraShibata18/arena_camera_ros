@@ -7,7 +7,7 @@ import rospy
 import actionlib
 from cv_bridge import CvBridge
 
-from camera_control_msgs.msg import GrabSequenceAction, GrabSequenceResult
+from arena_camera_control_msgs.msg import GrabSequenceAction, GrabSequenceResult
 
 __author__ = 'nikolas'
 

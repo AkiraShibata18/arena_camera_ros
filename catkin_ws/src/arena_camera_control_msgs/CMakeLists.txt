@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(camera_control_msgs)
+project(arena_camera_control_msgs)
 
 set(MSG_DEPS
   actionlib_msgs

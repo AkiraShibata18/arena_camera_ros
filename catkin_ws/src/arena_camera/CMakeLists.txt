@@ -45,7 +45,7 @@ endif()
 
 set(CATKIN_COMPONENTS
      actionlib
-     camera_control_msgs # arena_camera depends on this upper custom msg package 
+     arena_camera_control_msgs # arena_camera depends on this upper custom msg package 
      camera_info_manager
      cv_bridge
      diagnostic_updater

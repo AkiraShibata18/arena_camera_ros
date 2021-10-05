@@ -4,8 +4,8 @@ import rospy
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from actionlib import SimpleActionClient, SimpleActionServer
-from camera_control_msgs.msg import GrabImagesAction, GrabImagesGoal
-from camera_control_msgs.msg import GrabAndSaveImageAction, GrabAndSaveImageResult
+from arena_camera_control_msgs.msg import GrabImagesAction, GrabImagesGoal
+from arena_camera_control_msgs.msg import GrabAndSaveImageAction, GrabAndSaveImageResult
 
 
 class GrabAndSaveImageActionServers():

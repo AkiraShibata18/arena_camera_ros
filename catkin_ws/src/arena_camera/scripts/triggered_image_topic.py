@@ -2,7 +2,7 @@
 
 import rospy
 from actionlib import SimpleActionClient, SimpleActionServer
-from camera_control_msgs.msg import GrabImagesAction, GrabImagesGoal
+from arena_camera_control_msgs.msg import GrabImagesAction, GrabImagesGoal
 from sensor_msgs.msg import Image
 from std_msgs.msg import Empty
 

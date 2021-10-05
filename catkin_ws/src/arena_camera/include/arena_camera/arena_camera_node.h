@@ -44,15 +44,15 @@
 #include <diagnostic_updater/diagnostic_updater.h>
 #include <diagnostic_updater/publisher.h>
 
-#include <camera_control_msgs/SetBool.h>
-#include <camera_control_msgs/SetBinning.h>
-#include <camera_control_msgs/SetBrightness.h>
-#include <camera_control_msgs/SetExposure.h>
-#include <camera_control_msgs/SetGain.h>
-#include <camera_control_msgs/SetGamma.h>
-#include <camera_control_msgs/SetROI.h>
-#include <camera_control_msgs/SetSleeping.h>
-#include <camera_control_msgs/GrabImagesAction.h>
+#include <arena_camera_control_msgs/SetBool.h>
+#include <arena_camera_control_msgs/SetBinning.h>
+#include <arena_camera_control_msgs/SetBrightness.h>
+#include <arena_camera_control_msgs/SetExposure.h>
+#include <arena_camera_control_msgs/SetGain.h>
+#include <arena_camera_control_msgs/SetGamma.h>
+#include <arena_camera_control_msgs/SetROI.h>
+#include <arena_camera_control_msgs/SetSleeping.h>
+#include <arena_camera_control_msgs/GrabImagesAction.h>
  
 #include <actionlib/server/simple_action_server.h>
 #include <camera_info_manager/camera_info_manager.h>
@@ -67,7 +67,7 @@
 
 namespace arena_camera
 {
-typedef actionlib::SimpleActionServer<camera_control_msgs::GrabImagesAction> GrabImagesAS;
+typedef actionlib::SimpleActionServer<arena_camera_control_msgs::GrabImagesAction> GrabImagesAS;
 
 /**
 * The ROS-node of the arena_camera interface
@@ -182,8 +182,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setBinningCallback(camera_control_msgs::SetBinning::Request& req,
-                          camera_control_msgs::SetBinning::Response& res);
+  bool setBinningCallback(arena_camera_control_msgs::SetBinning::Request& req,
+                          arena_camera_control_msgs::SetBinning::Response& res);
 
   /**
   * Service callback for updating the cameras roi setting
@@ -191,7 +191,7 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setROICallback(camera_control_msgs::SetROI::Request& req, camera_control_msgs::SetROI::Response& res);
+  bool setROICallback(arena_camera_control_msgs::SetROI::Request& req, arena_camera_control_msgs::SetROI::Response& res);
 
   bool setExposureValue(const float& target_exposure, float& reached_exposure);
 
@@ -209,8 +209,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setExposureCallback(camera_control_msgs::SetExposure::Request& req,
-                           camera_control_msgs::SetExposure::Response& res);
+  bool setExposureCallback(arena_camera_control_msgs::SetExposure::Request& req,
+                           arena_camera_control_msgs::SetExposure::Response& res);
 
   /**
   * Sets the target brightness which is the intensity-mean over all pixels.
@@ -235,8 +235,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setBrightnessCallback(camera_control_msgs::SetBrightness::Request& req,
-                             camera_control_msgs::SetBrightness::Response& res);
+  bool setBrightnessCallback(arena_camera_control_msgs::SetBrightness::Request& req,
+                             arena_camera_control_msgs::SetBrightness::Response& res);
 
   bool setGainValue(const float& target_gain, float& reached_gain);
 
@@ -254,7 +254,7 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setGainCallback(camera_control_msgs::SetGain::Request& req, camera_control_msgs::SetGain::Response& res);
+  bool setGainCallback(arena_camera_control_msgs::SetGain::Request& req, arena_camera_control_msgs::SetGain::Response& res);
 
   bool setGammaValue(const float& target_gamma, float& reached_gamma);
 
@@ -272,7 +272,7 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setGammaCallback(camera_control_msgs::SetGamma::Request& req, camera_control_msgs::SetGamma::Response& res);
+  bool setGammaCallback(arena_camera_control_msgs::SetGamma::Request& req, arena_camera_control_msgs::SetGamma::Response& res);
 
   /**
   * Callback that puts the camera to sleep
@@ -280,8 +280,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setSleepingCallback(camera_control_msgs::SetSleeping::Request& req,
-                           camera_control_msgs::SetSleeping::Response& res);
+  bool setSleepingCallback(arena_camera_control_msgs::SetSleeping::Request& req,
+                           arena_camera_control_msgs::SetSleeping::Response& res);
 
   /**
   * Returns true if the camera was put into sleep mode
@@ -317,18 +317,18 @@ protected:
   * Callback for the grab images action
   * @param goal the goal
   */
-  void grabImagesRawActionExecuteCB(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal);
+  void grabImagesRawActionExecuteCB(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal);
 
   /**
   * Callback for the grab rectified images action
   * @param goal the goal
   */
-  void grabImagesRectActionExecuteCB(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal);
+  void grabImagesRectActionExecuteCB(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal);
   
   /**
   * This function can also be called from the derived ArenaCameraOpenCV-Class
   */
-  camera_control_msgs::GrabImagesResult grabImagesRaw(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal,
+  arena_camera_control_msgs::GrabImagesResult grabImagesRaw(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal,
                                                       GrabImagesAS* action_server);
 
   void initCalibrationMatrices(sensor_msgs::CameraInfo& info, const cv::Mat& D, const cv::Mat& K);
@@ -340,8 +340,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setUserOutputCB(int output_id, camera_control_msgs::SetBool::Request& req,
-                       camera_control_msgs::SetBool::Response& res);
+  bool setUserOutputCB(int output_id, arena_camera_control_msgs::SetBool::Request& req,
+                       arena_camera_control_msgs::SetBool::Response& res);
 
   /**
   * Callback that activates the digital user output to
@@ -351,8 +351,8 @@ protected:
   * @param res response
   * @return true on success
   */
-  bool setAutoflash(const int output_id, camera_control_msgs::SetBool::Request& req,
-                    camera_control_msgs::SetBool::Response& res);
+  bool setAutoflash(const int output_id, arena_camera_control_msgs::SetBool::Request& req,
+                    arena_camera_control_msgs::SetBool::Response& res);
 
   ros::NodeHandle nh_;
   ArenaCameraParameter arena_camera_parameter_set_;

@@ -9,7 +9,7 @@ import rospy
 from cv_bridge import CvBridge
 import actionlib
 
-from camera_control_msgs.msg import GrabSequenceAction, GrabSequenceGoal
+from arena_camera_control_msgs.msg import GrabSequenceAction, GrabSequenceGoal
 
 server = None
 

@@ -800,16 +800,16 @@ bool ArenaCameraNode::grabImage()
   }
 }
 
-void ArenaCameraNode::grabImagesRawActionExecuteCB(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal)
+void ArenaCameraNode::grabImagesRawActionExecuteCB(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal)
 {
-  camera_control_msgs::GrabImagesResult result;
+  arena_camera_control_msgs::GrabImagesResult result;
   result = grabImagesRaw(goal, &grab_imgs_raw_as_);
   grab_imgs_raw_as_.setSucceeded(result);
 }
 
-void ArenaCameraNode::grabImagesRectActionExecuteCB(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal)
+void ArenaCameraNode::grabImagesRectActionExecuteCB(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal)
 {
-  camera_control_msgs::GrabImagesResult result;
+  arena_camera_control_msgs::GrabImagesResult result;
   if (!camera_info_manager_->isCalibrated())
   {
     result.success = false;
@@ -839,11 +839,11 @@ void ArenaCameraNode::grabImagesRectActionExecuteCB(const camera_control_msgs::G
   }
 }
 
-camera_control_msgs::GrabImagesResult
-ArenaCameraNode::grabImagesRaw(const camera_control_msgs::GrabImagesGoal::ConstPtr& goal, GrabImagesAS* action_server)
+arena_camera_control_msgs::GrabImagesResult
+ArenaCameraNode::grabImagesRaw(const arena_camera_control_msgs::GrabImagesGoal::ConstPtr& goal, GrabImagesAS* action_server)
 {
-  camera_control_msgs::GrabImagesResult result;
-  camera_control_msgs::GrabImagesFeedback feedback;
+  arena_camera_control_msgs::GrabImagesResult result;
+  arena_camera_control_msgs::GrabImagesFeedback feedback;
 
 #if DEBUG
   std::cout << *goal << std::endl;
@@ -1043,15 +1043,15 @@ ArenaCameraNode::grabImagesRaw(const camera_control_msgs::GrabImagesGoal::ConstP
   return result;
 }
 
-bool ArenaCameraNode::setUserOutputCB(const int output_id, camera_control_msgs::SetBool::Request& req,
-                                      camera_control_msgs::SetBool::Response& res)
+bool ArenaCameraNode::setUserOutputCB(const int output_id, arena_camera_control_msgs::SetBool::Request& req,
+                                      arena_camera_control_msgs::SetBool::Response& res)
 {
   //  res.success = arena_camera_->setUserOutput(output_id, req.data);
   return true;
 }
 
-bool ArenaCameraNode::setAutoflash(const int output_id, camera_control_msgs::SetBool::Request& req,
-                                   camera_control_msgs::SetBool::Response& res)
+bool ArenaCameraNode::setAutoflash(const int output_id, arena_camera_control_msgs::SetBool::Request& req,
+                                   arena_camera_control_msgs::SetBool::Response& res)
 {
   ROS_INFO("AutoFlashCB: %i -> %i", output_id, req.data);
   std::map<int, bool> auto_flashs;
@@ -1332,8 +1332,8 @@ bool ArenaCameraNode::setBinningY(const size_t& target_binning_y, size_t& reache
   return true;
 }
 
-bool ArenaCameraNode::setBinningCallback(camera_control_msgs::SetBinning::Request& req,
-                                         camera_control_msgs::SetBinning::Response& res)
+bool ArenaCameraNode::setBinningCallback(arena_camera_control_msgs::SetBinning::Request& req,
+                                         arena_camera_control_msgs::SetBinning::Response& res)
 {
   size_t reached_binning_x, reached_binning_y;
   bool success_x = setBinningX(req.target_binning_x, reached_binning_x);
@@ -1344,8 +1344,8 @@ bool ArenaCameraNode::setBinningCallback(camera_control_msgs::SetBinning::Reques
   return true;
 }
 
-bool ArenaCameraNode::setROICallback(camera_control_msgs::SetROI::Request& req,
-                                     camera_control_msgs::SetROI::Response& res)
+bool ArenaCameraNode::setROICallback(arena_camera_control_msgs::SetROI::Request& req,
+                                     arena_camera_control_msgs::SetROI::Response& res)
 {
   res.success = setROI(req.target_roi, res.reached_roi);
   return true;
@@ -1431,8 +1431,8 @@ bool ArenaCameraNode::setExposure(const float& target_exposure, float& reached_e
   }
 }
 
-bool ArenaCameraNode::setExposureCallback(camera_control_msgs::SetExposure::Request& req,
-                                          camera_control_msgs::SetExposure::Response& res)
+bool ArenaCameraNode::setExposureCallback(arena_camera_control_msgs::SetExposure::Request& req,
+                                          arena_camera_control_msgs::SetExposure::Response& res)
 {
   res.success = setExposure(req.target_exposure, res.reached_exposure);
   return true;
@@ -1511,8 +1511,8 @@ bool ArenaCameraNode::setGain(const float& target_gain, float& reached_gain)
   }
 }
 
-bool ArenaCameraNode::setGainCallback(camera_control_msgs::SetGain::Request& req,
-                                      camera_control_msgs::SetGain::Response& res)
+bool ArenaCameraNode::setGainCallback(arena_camera_control_msgs::SetGain::Request& req,
+                                      arena_camera_control_msgs::SetGain::Response& res)
 {
   res.success = setGain(req.target_gain, res.reached_gain);
   return true;
@@ -1611,8 +1611,8 @@ bool ArenaCameraNode::setGamma(const float& target_gamma, float& reached_gamma)
   return true;
 }
 
-bool ArenaCameraNode::setGammaCallback(camera_control_msgs::SetGamma::Request& req,
-                                       camera_control_msgs::SetGamma::Response& res)
+bool ArenaCameraNode::setGammaCallback(arena_camera_control_msgs::SetGamma::Request& req,
+                                       arena_camera_control_msgs::SetGamma::Response& res)
 {
   res.success = setGamma(req.target_gamma, res.reached_gamma);
   return true;
@@ -1824,8 +1824,8 @@ bool ArenaCameraNode::setBrightness(const int& target_brightness, int& reached_b
   return is_brightness_reached;
 }
 
-bool ArenaCameraNode::setBrightnessCallback(camera_control_msgs::SetBrightness::Request& req,
-                                            camera_control_msgs::SetBrightness::Response& res)
+bool ArenaCameraNode::setBrightnessCallback(arena_camera_control_msgs::SetBrightness::Request& req,
+                                            arena_camera_control_msgs::SetBrightness::Response& res)
 {
   res.success = setBrightness(req.target_brightness, res.reached_brightness, req.exposure_auto, req.gain_auto);
   if (req.brightness_continuous)
@@ -1926,8 +1926,8 @@ float ArenaCameraNode::calcCurrentBrightness()
   return sum;
 }
 
-bool ArenaCameraNode::setSleepingCallback(camera_control_msgs::SetSleeping::Request& req,
-                                          camera_control_msgs::SetSleeping::Response& res)
+bool ArenaCameraNode::setSleepingCallback(arena_camera_control_msgs::SetSleeping::Request& req,
+                                          arena_camera_control_msgs::SetSleeping::Response& res)
 {
   is_sleeping_ = req.set_sleeping;
 
